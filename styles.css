@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.icon-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.icon-background .material-icons {
+    position: absolute;
+    font-size: 24px;
+    color: #000;
+    opacity: 0.05;
+    transition: opacity 2s ease-in-out;
+}
+
+.icon-background .material-icons.pulse {
+    opacity: 0.08;
+}
+
+.window {
+    background: #ffffff;
+    z-index: 1;
+    position: relative;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px;
+}
+
+.title-bar {
+    background: #ffffff;
+    padding: 8px 16px;
+    border-bottom: 1px solid #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+}
+
+.window-title {
+    font-size: 14px;
+    color: #000000;
+    font-weight: 400;
+}
+
+.window-controls {
+    display: flex;
+    gap: 6px;
+}
+
+.control {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.minimize {
+    background-color: #FFE600;
+}
+
+.maximize {
+    background-color: #FFA500;
+}
+
+.close {
+    background-color: #FF0000;
+}
+
+/* Nueva sección de información del proyecto */
+.project-info {
+    padding: 24px;
+    border-bottom: 1px solid #000000;
+}
+
+.student-info h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.student-info p, .project-details p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.hero-section {
+    padding: 32px 24px;
+    background-color: #ffffff;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+}
+
+.hero-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #000000;
+}
+
+.hero-subtitle {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features-section {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    border-bottom: 1px solid #000000;
+}
+
+.feature-card {
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 20px;
+}
+
+.feature-card:hover {
+    background-color: #f5f5f5;
+}
+
+.material-icons {
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.feature-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+.feature-description {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.feature-list {
+    list-style: none;
+    margin-top: 12px;
+}
+
+.feature-list li {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #000000;
+    padding-left: 20px;
+    position: relative;
+}
+
+/* Nueva sección de roles */
+.roles-section {
+    padding: 32px 24px;
+    border-bottom: 1px solid #000000;
+}
+
+.roles-section h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.role-card {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.role-card h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #000000;
+}
+
+.role-card ul {
+    list-style: none;
+}
+
+.role-card ul li {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #000000;
+}
+
+/* Nueva sección de tecnologías */
+.tech-section {
+    padding: 32px 24px;
+    border-bottom: 1px solid #000000;
+}
+
+.tech-section h2 {
+    font-size: 20px;
+    margin-bottom: 24px;
+    text-align: center;
+    color: #000000;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.tech-item {
+    padding: 16px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+}
+
+.tech-item h4 {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #000000;
+}
+
+.cta-section {
+    padding: 32px 24px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.cta-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 24px;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+    .window {
+        margin: 10px;
+    }
+
+    .hero-title {
+        font-size: 20px;
+    }
+
+    .features-section {
+        grid-template-columns: 1fr;
+    }
+
+    .roles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-info {
+        padding: 16px;
+    }
+
+    .student-info h3 {
+        font-size: 14px;
+    }
+}
