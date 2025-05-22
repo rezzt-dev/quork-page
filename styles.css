@@ -32,13 +32,13 @@ body {
 .icon-background .material-icons {
     position: absolute;
     font-size: 24px;
-    color: #000;
-    opacity: 0.05;
+    color: #222;
+    opacity: 0.10;
     transition: opacity 2s ease-in-out;
 }
 
 .icon-background .material-icons.pulse {
-    opacity: 0.08;
+    opacity: 0.18;
 }
 
 /* Ventana principal */
