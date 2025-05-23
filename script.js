@@ -164,6 +164,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Animación al hacer clic en las tarjetas
+    document.querySelectorAll('.feature-card, .role-card, .testimonial-card, .tech-item').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (e.target.tagName.toLowerCase() === 'a') return;
+            const originalBoxShadow = card.style.boxShadow;
+            const originalBackground = card.style.background;
+            const originalBorder = card.style.border;
+            const originalTransform = card.style.transform;
+            card.style.transition = 'all 0.3s ease-in-out';
+            card.style.boxShadow = '0 0 0 4px #2366c455, 0 8px 18px #2366c455';
+            card.style.background = '#e3f2ff';
+            card.style.border = '1px solid #2366C4';
+            card.style.transform = 'translateY(-2px) scale(1.01)';
+            setTimeout(() => {
+                card.style.boxShadow = originalBoxShadow;
+                card.style.background = originalBackground;
+                card.style.border = originalBorder;
+                card.style.transform = originalTransform;
+            }, 300);
+        });
+    });
+
     // Animación para mensaje de éxito
     const style = document.createElement('style');
     style.innerHTML = `
@@ -174,4 +196,74 @@ document.addEventListener('DOMContentLoaded', function() {
         100% { opacity: 0; transform: translateY(-10px);}
     }`;
     document.head.appendChild(style);
+
+    // Controles de ventana
+    const windowControls = document.querySelectorAll('.control');
+    const windowElement = document.querySelector('.window');
+    const body = document.body;
+    let isMaximized = false;
+
+    windowControls[1].addEventListener('click', function() {
+        if (!isMaximized) {
+            body.classList.add('maximized');
+            isMaximized = true;
+        } else {
+            body.classList.remove('maximized');
+            isMaximized = false;
+        }
+    });
+
+    // Minimizar: Crea un botón centrado con el icono de QUORK para restaurar
+    windowControls[0].addEventListener('click', function() {
+        windowElement.style.opacity = '0';
+        windowElement.style.pointerEvents = 'none';
+        windowElement.style.transform = 'translateY(40px)';
+        windowElement.style.transition = 'opacity 0.3s, transform 0.3s';
+        setTimeout(() => {
+            windowElement.style.display = 'none';
+            // Crear botón centrado de restaurar
+            const restoreButton = document.createElement('button');
+            restoreButton.className = 'centered-quork-button';
+            restoreButton.innerHTML = `<img src="resources/app.ico" alt="QUORK"> Restaurar ventana`;
+            restoreButton.addEventListener('click', function() {
+                windowElement.style.display = '';
+                windowElement.style.opacity = '0';
+                windowElement.style.transform = 'translateY(40px)';
+                setTimeout(() => {
+                    windowElement.style.opacity = '1';
+                    windowElement.style.transform = 'translateY(0)';
+                    windowElement.style.pointerEvents = '';
+                    restoreButton.remove();
+                }, 10);
+            });
+            document.body.appendChild(restoreButton);
+        }, 300);
+    });
+
+    // Cerrar: Crea un botón solo icono para reabrir la web
+    windowControls[2].addEventListener('click', function() {
+        windowElement.style.opacity = '0';
+        windowElement.style.transform = 'scale(0.9)';
+        windowElement.style.transition = 'opacity 0.3s, transform 0.3s';
+        windowElement.style.pointerEvents = 'none';
+        setTimeout(() => {
+            windowElement.style.display = 'none';
+            // Botón solo icono
+            const reopenButton = document.createElement('button');
+            reopenButton.className = 'centered-quork-icon-button';
+            reopenButton.innerHTML = `<img src="resources/app.ico" alt="QUORK">`;
+            reopenButton.addEventListener('click', function() {
+                windowElement.style.display = '';
+                windowElement.style.opacity = '0';
+                windowElement.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    windowElement.style.opacity = '1';
+                    windowElement.style.transform = 'scale(1)';
+                    windowElement.style.pointerEvents = '';
+                    reopenButton.remove();
+                }, 10);
+            });
+            document.body.appendChild(reopenButton);
+        }, 300);
+    });
 });
