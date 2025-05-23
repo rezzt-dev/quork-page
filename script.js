@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const windowElement = document.querySelector('.window');
+    const windowControls = document.querySelectorAll('.control');
+    const body = document.body;
+    let isMaximized = false;
+
     // Configuración de iconos
     const ICONS = [
         'code', 'bug_report', 'terminal', 'api', 'memory',
@@ -197,23 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }`;
     document.head.appendChild(style);
 
-    // Controles de ventana
-    const windowControls = document.querySelectorAll('.control');
-    const windowElement = document.querySelector('.window');
-    const body = document.body;
-    let isMaximized = false;
-
-    windowControls[1].addEventListener('click', function() {
-        if (!isMaximized) {
-            body.classList.add('maximized');
-            isMaximized = true;
-        } else {
-            body.classList.remove('maximized');
-            isMaximized = false;
-        }
-    });
-
-    // Minimizar: Crea un botón centrado con el icono de QUORK para restaurar
     windowControls[0].addEventListener('click', function() {
         windowElement.style.opacity = '0';
         windowElement.style.pointerEvents = 'none';
@@ -221,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         windowElement.style.transition = 'opacity 0.3s, transform 0.3s';
         setTimeout(() => {
             windowElement.style.display = 'none';
-            // Crear botón centrado de restaurar
+            // Botón de restaurar (puedes usar el estilo que prefieras)
             const restoreButton = document.createElement('button');
             restoreButton.className = 'centered-quork-button';
             restoreButton.innerHTML = `<img src="resources/app.ico" alt="QUORK"> Restaurar ventana`;
@@ -240,7 +228,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     });
 
-    // Cerrar: Crea un botón solo icono para reabrir la web
+    // Maximizar: Alterna entre pantalla completa y normal
+    windowControls[1].addEventListener('click', function() {
+        if (!isMaximized) {
+            body.classList.add('maximized');
+            windowElement.style.position = 'fixed';
+            windowElement.style.left = '0';
+            windowElement.style.top = '0';
+            windowElement.style.width = '100vw';
+            windowElement.style.height = '100vh';
+            windowElement.style.margin = '0';
+            windowElement.style.borderRadius = '0';
+            windowElement.style.zIndex = '1000';
+            isMaximized = true;
+        } else {
+            body.classList.remove('maximized');
+            windowElement.style.position = '';
+            windowElement.style.left = '';
+            windowElement.style.top = '';
+            windowElement.style.width = '';
+            windowElement.style.height = '';
+            windowElement.style.margin = '';
+            windowElement.style.borderRadius = '';
+            windowElement.style.zIndex = '';
+            isMaximized = false;
+            // Si usas margin: auto en CSS, la ventana se centra sola
+        }
+    });
+
+    // Cerrar: Oculta la ventana y muestra el botón de reabrir (solo icono)
     windowControls[2].addEventListener('click', function() {
         windowElement.style.opacity = '0';
         windowElement.style.transform = 'scale(0.9)';
@@ -248,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
         windowElement.style.pointerEvents = 'none';
         setTimeout(() => {
             windowElement.style.display = 'none';
-            // Botón solo icono
+            // Botón solo icono para reabrir
             const reopenButton = document.createElement('button');
             reopenButton.className = 'centered-quork-icon-button';
             reopenButton.innerHTML = `<img src="resources/app.ico" alt="QUORK">`;
